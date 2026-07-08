@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ramanakalyan V — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --border:    #1e2330;
+      --accent:    #4f8ef7;
+      --accent2:   #a78bfa;
+      --text:      #e4e8f0;
+      --muted:     #6b7591;
+      --tag-bg:    #1a1f2e;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2.5rem;
+      background: rgba(13,15,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 2.5rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .hero-inner { max-width: 700px; }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .hero-name span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: #9aa3bc;
+      line-height: 1.8;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #3a7ae0; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+    .skill-card h4 {
+      font-size: 0.75rem;
+      font-family: var(--mono);
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: #9aa3bc;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-family: var(--mono);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2));
+      border-radius: 3px 0 0 3px;
+    }
+    .exp-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .exp-role { font-size: 1.1rem; font-weight: 600; }
+    .exp-company { color: var(--accent); font-weight: 500; }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: var(--tag-bg);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .exp-location { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .exp-achievements { list-style: none; padding: 0; }
+    .exp-achievements li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.92rem;
+      color: #9aa3bc;
+      margin-bottom: 0.5rem;
+    }
+    .exp-achievements li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.25rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.2rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.6rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .project-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 0.8rem;
+    }
+    .project-icon { font-size: 1.4rem; }
+    .project-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.88rem; color: #9aa3bc; line-height: 1.6; margin-bottom: 1rem; }
+    .project-stat {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent2);
+      background: rgba(167,139,250,0.08);
+      border: 1px solid rgba(167,139,250,0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .edu-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+    .edu-degree { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .edu-school { color: var(--accent); font-size: 0.92rem; margin-bottom: 0.2rem; }
+    .edu-meta { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-icon { font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 5rem 1.2rem 3rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .edu-card { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">ramanakalyan.v</div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">// available for opportunities</p>
+      <h1 class="hero-name">Ramanakalyan <span>V</span></h1>
+      <p class="hero-title">Software Engineer · ML Developer · ECE Graduate</p>
+      <p class="hero-desc">
+        I'm a recent Electronics and Communication Engineering graduate from Misrimal Navajee Munoth Jain Engineering College, Chennai, with a strong interest in software development and machine learning. During my internship at 8 Queens Software Technologies, I built AI chatbots using Gemini and Cohere APIs, analyzed real-world datasets, and developed a heart disease prediction model achieving 84% accuracy using logistic regression. My final year project involved detecting schizophrenia from EEG signals using deep learning, achieving 88% accuracy. I'm proficient in Python, SQL, and Git, with hands-on experience in data analysis, ML model building, and API integration. Currently expanding my skills in web development to build full-stack applications.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">// what I work with</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">C++</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>ML / Data</h4>
+        <div class="tags">
+          <span class="tag">scikit-learn</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">Keras</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Databases</h4>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Tools & Hardware</h4>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Arduino</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Raspberry Pi</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Core Concepts</h4>
+        <div class="tags">
+          <span class="tag">DSA</span>
+          <span class="tag">OOP</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">API Integration</span>
+          <span class="tag">EDA</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h4>Soft Skills</h4>
+        <div class="tags">
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Documentation</span>
+          <span class="tag">Communication</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">// where I've worked</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-role">AI / ML Intern — <span class="exp-company">8 Queens Software Technologies</span></p>
+          <p class="exp-location">📍 Chennai, Tamil Nadu</p>
+        </div>
+        <span class="exp-date">Aug 2025 · 30 days</span>
+      </div>
+      <ul class="exp-achievements">
+        <li>Built AI chatbots using Gemini 2.5 Pro and Cohere APIs with real-time weather and Wikipedia integration.</li>
+        <li>Performed end-to-end EDA on Zomato dataset using Pandas, Matplotlib, and Seaborn to extract business insights.</li>
+        <li>Developed a heart disease prediction model using logistic regression on the Framingham dataset, achieving 84% accuracy.</li>
+        <li>Solved complex DSA problems in Python including stock buy-sell optimization, trapping rainwater, and candy distribution.</li>
+        <li>Studied ML concepts including vector embeddings, cosine similarity, and RAG architecture.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">// what I've built</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🧠</span>
+        </div>
+        <p class="project-title">EEG-Based Schizophrenia Detection</p>
+        <span class="project-stat">88.06% accuracy · Triple-Branch CNN</span>
+        <p class="project-desc">Designed a multi-modal deep learning system integrating temporal, spectral, and spatial models to classify EEG signals for automated schizophrenia detection. Deployed on Raspberry Pi 4 using TensorFlow Lite.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">TFLite</span>
+          <span class="tag">Raspberry Pi</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🤖</span>
+        </div>
+        <p class="project-title">AI Chatbot with Live Data</p>
+        <span class="project-stat">Gemini 2.5 Pro + Cohere APIs</span>
+        <p class="project-desc">Built a Python-based chatbot powered by Gemini and Cohere APIs with real-time weather retrieval via OpenWeatherMap and Wikipedia integration for factual responses.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Gemini API</span>
+          <span class="tag">Cohere API</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">❤️</span>
+        </div>
+        <p class="project-title">Heart Disease Prediction Model</p>
+        <span class="project-stat">84% accuracy · Framingham Dataset</span>
+        <p class="project-desc">Developed a logistic regression classifier to predict 10-year coronary heart disease risk. Generated confusion matrix, classification report, and feature importance analysis identifying age, systolic BP, and gender as top risk factors.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">Seaborn</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🚦</span>
+        </div>
+        <p class="project-title">IoT Smart Traffic Diversion System</p>
+        <span class="project-stat">IoT · Embedded Systems</span>
+        <p class="project-desc">Developed an IoT-powered traffic congestion management system that dynamically reroutes vehicles using sensor data and real-time road condition monitoring to reduce urban traffic bottlenecks.</p>
+        <div class="tags">
+          <span class="tag">IoT</span>
+          <span class="tag">Sensors</span>
+          <span class="tag">Embedded Systems</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">🎮</span>
+        </div>
+        <p class="project-title">Bluetooth Steering Wheel Controller</p>
+        <span class="project-stat">ESP32 · Bluetooth · C++</span>
+        <p class="project-desc">Built a wireless steering wheel controller using ESP32 with Bluetooth connectivity, mapping physical inputs to game controller signals with low-latency transmission.</p>
+        <div class="tags">
+          <span class="tag">ESP32</span>
+          <span class="tag">Bluetooth</span>
+          <span class="tag">C++</span>
+          <span class="tag">Hardware</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">// where I studied</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <p class="edu-degree">Bachelor of Engineering — Electronics & Communication Engineering</p>
+        <p class="edu-school">Misrimal Navajee Munoth Jain Engineering College</p>
+        <p class="edu-meta">Affiliated to Anna University, Chennai &nbsp;·&nbsp; Nov 2022 – May 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// reach me at</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <a href="mailto:sr136514@gmail.com" class="contact-item">
+        <span class="contact-icon">✉️</span> sr136514@gmail.com
+      </a>
+      <a href="tel:+919884078503" class="contact-item">
+        <span class="contact-icon">📞</span> +91 98840 78503
+      </a>
+      <a href="https://github.com/Ramana-messi" target="_blank" class="contact-item">
+        <span class="contact-icon">🐙</span> GitHub
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by Ramanakalyan V &nbsp;·&nbsp; Chennai &nbsp;·&nbsp; 2025</p>
+  </footer>
+
+</body>
+</html>
